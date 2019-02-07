@@ -262,23 +262,28 @@ void Game::initialize()
 	vertex[5].color[2] = 0.0f;
 	vertex[5].color[3] = 0.0f;
 
-	vertex[0].texel[0] = 0.5f;
-	vertex[0].texel[1] = 0.5f;
 
-	vertex[1].texel[0] = 1.0f;
-	vertex[1].texel[1] = 1.0f;
+	for (int index = 0; index < 35; index += 5)
+	{
 
-	vertex[2].texel[0] = 1.0f;
-	vertex[2].texel[1] = 0.0f;
+		vertex[index].texel[0] = 0.6f;
+		vertex[index].texel[1] = 0.0f;
 
-	vertex[3].texel[0] = 1.0;
-	vertex[3].texel[1] = 0.5;
+		vertex[index + 1].texel[0] = 0.6f;
+		vertex[index + 1].texel[1] = -1.6f;
 
-	vertex[4].texel[0] = 0.5;
-	vertex[4].texel[1] = 1.0;
+		vertex[index + 2].texel[0] = 0.6f;
+		vertex[index + 2].texel[1] = -2.5f;
 
-	vertex[5].texel[0] = 0.5;
-	vertex[5].texel[1] = 1.0;
+		vertex[index + 3].texel[0] = 0.6;
+		vertex[index + 3].texel[1] = -3.5;
+
+		vertex[index + 4].texel[0] = 0.6;
+		vertex[index + 4].texel[1] = -4.5;
+
+		vertex[index + 5].texel[0] = 0.6;
+		vertex[index + 5].texel[1] = -5.0;
+	}
 
 	/*Index of Poly / Triangle to Draw */
 	triangles[0] = 0;   triangles[1] = 1;   triangles[2] = 2;
@@ -510,8 +515,8 @@ void Game::render()
 	// Set pointers for each parameter
 	// https://www.opengl.org/sdk/docs/man4/html/glVertexAttribPointer.xhtml
 	glVertexAttribPointer(positionID, 3, GL_FLOAT, GL_FALSE, sizeof(Vert), 0);
-	glVertexAttribPointer(colorID, 4, GL_FLOAT, GL_FALSE, sizeof(Vert), 0);
-	glVertexAttribPointer(texelID, 2, GL_FLOAT, GL_FALSE, sizeof(Vert), 0);
+	glVertexAttribPointer(colorID, 4, GL_FLOAT, GL_FALSE, sizeof(Vert), (void*)(3 * sizeof(float)));
+	glVertexAttribPointer(texelID, 2, GL_FLOAT, GL_FALSE, sizeof(Vert), (void*)(7 *sizeof(float)));
 
 	//Enable Arrays
 	glEnableVertexAttribArray(positionID);
